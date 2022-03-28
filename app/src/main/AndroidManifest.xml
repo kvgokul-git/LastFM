@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LastFM">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.views.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.LastFM">
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.lastfm.app
+package com.lastfm.app.ui.views
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
