@@ -13,6 +13,8 @@ import com.lastfm.app.viewmodels.LastFMAlbumDetailsViewModel
 import com.lastfm.app.viewmodels.LastFMArtistDetailsViewModel
 import com.lastfm.app.viewmodels.LastFMTrackDetailsViewModel
 
+private const val GENERIC_ERROR_MESSAGE = "Something went wrong with details screen"
+
 @Composable
 fun AlbumDetailsWithViewModel(
     lastFMAlbumDetailsViewModel: LastFMAlbumDetailsViewModel,
@@ -26,7 +28,7 @@ fun AlbumDetailsWithViewModel(
         is AlbumDetailsState.Loaded -> AlbumDetails(albumDetailsResponse = result.albumDetails)
         is AlbumDetailsState.Loading -> LastFMStandardProgressBar()
         else -> Text(
-            text = " Hello there is an error with details screen",
+            text = GENERIC_ERROR_MESSAGE,
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.onError
         )
@@ -45,7 +47,7 @@ fun ArtistDetailsWithViewModel(
         is ArtistDetailsState.Loaded -> ArtistDetails(artistDetailsResponse = result.artistDetails)
         is ArtistDetailsState.Loading -> LastFMStandardProgressBar()
         else -> Text(
-            text = " Hello there is an error with details screen",
+            text = GENERIC_ERROR_MESSAGE,
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.onError
         )
@@ -65,7 +67,7 @@ fun TrackDetailsWithViewModel(
         is TrackDetailsState.Loaded -> TrackDetails(trackDetailsResponse = result.trackDetails)
         is TrackDetailsState.Loading -> LastFMStandardProgressBar()
         else -> Text(
-            text = " Hello there is an error with details screen",
+            text = GENERIC_ERROR_MESSAGE,
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.onError
         )
