@@ -3,6 +3,7 @@ package com.lastfm.app.data.api
 import com.lastfm.app.BuildConfig
 import com.lastfm.app.data.api.dto.*
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface LastFMApi {

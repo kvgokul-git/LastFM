@@ -11,13 +11,13 @@ data class TrackDetails(
     @Json(name = "name")
     val name: String,
     @Json(name = "artist")
-    val artistDetails: ArtistDetails,
+    val artistDetails: ArtistDetails?,
     @Json(name = "album")
-    val albumDetails: AlbumDetails,
+    val albumDetails: AlbumDetails?,
     @Json(name = "listeners")
     val listeners: String,
     @Json(name = "playcount")
     val playcount: String,
     @Json(name = "wiki")
-    val wiki: Wiki
+    val wiki: Wiki?
 ) : Parcelable

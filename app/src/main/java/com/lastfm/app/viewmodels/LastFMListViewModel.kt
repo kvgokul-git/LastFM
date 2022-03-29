@@ -1,5 +1,8 @@
 package com.lastfm.app.viewmodels
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lastfm.app.domain.AlbumsUseCase
@@ -8,6 +11,7 @@ import com.lastfm.app.domain.TracksUseCase
 import com.lastfm.app.domain.UseCaseResult
 import com.lastfm.app.model.AlbumsListState
 import com.lastfm.app.model.ArtistsListState
+import com.lastfm.app.model.SearchWidgetState
 import com.lastfm.app.model.TracksListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,6 +36,23 @@ class LastFMListViewModel @Inject constructor(
     private val _tracksListViewState: MutableStateFlow<TracksListState> =
         MutableStateFlow(TracksListState.Loading)
     val tracksListViewState: StateFlow<TracksListState> = _tracksListViewState
+
+    private val _searchWidgetState: MutableState<SearchWidgetState> =
+        mutableStateOf(value = SearchWidgetState.CLOSED)
+    val searchWidgetState: State<SearchWidgetState> = _searchWidgetState
+
+    private val _searchTextState: MutableState<String> =
+        mutableStateOf(value = "")
+    val searchTextState: State<String> = _searchTextState
+
+    fun updateSearchWidgetState(newValue: SearchWidgetState) {
+        _searchWidgetState.value = newValue
+    }
+
+    fun updateSearchTextState(newValue: String) {
+        _searchTextState.value = newValue
+        searchText = _searchTextState.value
+    }
 
     var searchText: String = "believe"
         set(searchText) {

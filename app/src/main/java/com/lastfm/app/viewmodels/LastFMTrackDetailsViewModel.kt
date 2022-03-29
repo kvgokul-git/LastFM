@@ -19,7 +19,7 @@ class LastFMTrackDetailsViewModel @Inject constructor(
         MutableStateFlow(TrackDetailsState.Loading)
     val trackDetailsViewState: StateFlow<TrackDetailsState> = _trackDetailsViewState
 
-    private fun loadTrackDetails(trackName: String, artistName: String) {
+    fun loadTrackDetails(trackName: String, artistName: String) {
         viewModelScope.launch {
             _trackDetailsViewState.value =
                 when (val result =

@@ -19,7 +19,7 @@ class LastFMAlbumDetailsViewModel @Inject constructor(
         MutableStateFlow(AlbumDetailsState.Loading)
     val albumDetailsViewState: StateFlow<AlbumDetailsState> = _albumDetailsViewState
 
-    private fun loadAlbumDetails(albumName: String, artistName: String) {
+    fun loadAlbumDetails(albumName: String, artistName: String) {
         viewModelScope.launch {
             _albumDetailsViewState.value =
                 when (val result =

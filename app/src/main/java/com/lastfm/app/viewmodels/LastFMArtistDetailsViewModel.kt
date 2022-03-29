@@ -19,7 +19,7 @@ class LastFMArtistDetailsViewModel @Inject constructor(
         MutableStateFlow(ArtistDetailsState.Loading)
     val artistDetailsViewState: StateFlow<ArtistDetailsState> = _artistDetailsViewState
 
-    private fun loadArtistDetails(artistName: String) {
+    fun loadArtistDetails(artistName: String) {
         viewModelScope.launch {
             _artistDetailsViewState.value =
                 when (val result = artistDetailsUseCase.execute(artistName = artistName)) {

@@ -72,17 +72,25 @@ fun TrackDetails(trackDetailsResponse: TrackDetailsResponse) {
     ) {
         PageHeader(heading = trackDetailsResponse.trackDetails.name)
         MediumSpacer()
-        DisplayLargeImage(url = trackDetailsResponse.trackDetails.albumDetails.image[3].text)
+        trackDetailsResponse.trackDetails.albumDetails?.let {
+            DisplayLargeImage(url = it.image[3].text)
+        }
         LargeSpacer()
-        ArtistName(artistName = trackDetailsResponse.trackDetails.artistDetails.name)
+        trackDetailsResponse.trackDetails.artistDetails?.let {
+            ArtistName(artistName = it.name)
+        }
         MediumSpacer()
-        AlbumName(albumName = trackDetailsResponse.trackDetails.albumDetails.title)
+        trackDetailsResponse.trackDetails.albumDetails?.let {
+            AlbumName(albumName = it.title)
+        }
         MediumSpacer()
         Listener(listener = trackDetailsResponse.trackDetails.listeners)
         MediumSpacer()
         PlayCount(playCount = trackDetailsResponse.trackDetails.playcount)
         MediumSpacer()
-        WikiOrBio(wikiOrBio = trackDetailsResponse.trackDetails.wiki.content)
+        trackDetailsResponse.trackDetails.wiki?.let {
+            WikiOrBio(wikiOrBio = it.content)
+        }
     }
 }
 
