@@ -1,6 +1,5 @@
 package com.lastfm.app.ui.views.reusable_views
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardActions
@@ -21,7 +20,7 @@ import com.lastfm.app.model.SearchWidgetState
 import com.lastfm.app.viewmodels.LastFMListViewModel
 
 @Composable
-fun MainScreen(lastFMListViewModel: LastFMListViewModel) {
+fun LastFMWidgets(lastFMListViewModel: LastFMListViewModel) {
 
     val searchWidgetState by lastFMListViewModel.searchWidgetState
     val searchTextState by lastFMListViewModel.searchTextState
@@ -38,7 +37,7 @@ fun MainScreen(lastFMListViewModel: LastFMListViewModel) {
                     lastFMListViewModel.updateSearchWidgetState(newValue = SearchWidgetState.CLOSED)
                 },
                 onSearchClicked = {
-                    Log.d("Searched Text", it)
+                    lastFMListViewModel.updateSearchTextState(newValue = it)
                 },
                 onSearchTriggered = {
                     lastFMListViewModel.updateSearchWidgetState(newValue = SearchWidgetState.OPENED)

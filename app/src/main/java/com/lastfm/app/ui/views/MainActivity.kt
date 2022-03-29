@@ -22,7 +22,7 @@ import com.lastfm.app.ui.views.detailsscreen.TrackDetailsWithViewModel
 import com.lastfm.app.ui.views.listscreen.AlbumsListWithViewModel
 import com.lastfm.app.ui.views.listscreen.ArtistsListWithViewModel
 import com.lastfm.app.ui.views.listscreen.TracksListWithViewModel
-import com.lastfm.app.ui.views.reusable_views.MainScreen
+import com.lastfm.app.ui.views.reusable_views.LastFMWidgets
 import com.lastfm.app.ui.views.reusable_views.MediumSpacer
 import com.lastfm.app.ui.views.reusable_views.PageHeader
 import com.lastfm.app.viewmodels.LastFMAlbumDetailsViewModel
@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
                                     .heightIn(56.dp)
                                     .fillMaxWidth()
                             ) {
-                                MainScreen(lastFMListViewModel = lastFMListViewModel)
+                                LastFMWidgets(lastFMListViewModel = lastFMListViewModel)
                             }
                             MediumSpacer()
                             Column(
