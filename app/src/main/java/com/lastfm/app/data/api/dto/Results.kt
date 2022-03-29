@@ -9,9 +9,9 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 data class Results(
     @Json(name = "albummatches")
-    val albumMatches: AlbumMatches,
+    val albumMatches: AlbumMatches?,
     @Json(name = "artistmatches")
-    val artistMatches: ArtistMatches,
+    val artistMatches: ArtistMatches?,
     @Json(name = "trackmatches")
-    val trackMatches: TrackMatches
+    val trackMatches: TrackMatches?
 ) : Parcelable

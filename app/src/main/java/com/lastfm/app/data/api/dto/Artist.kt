@@ -13,7 +13,7 @@ data class Artist(
     @Json(name = "image")
     val image: List<Image>,
     @Json(name = "stats")
-    val stats: Stats,
+    val stats: Stats?,
     @Json(name = "bio")
-    val bio: Bio
+    val bio: Bio?
 ) : Parcelable

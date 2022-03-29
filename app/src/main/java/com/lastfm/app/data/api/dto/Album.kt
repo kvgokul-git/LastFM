@@ -13,11 +13,11 @@ data class Album(
     @Json(name = "artist")
     val artist: String,
     @Json(name = "listeners")
-    val listeners: String,
+    val listeners: String?,
     @Json(name = "playcount")
-    val playCount: String,
+    val playCount: String?,
     @Json(name = "image")
     val image: List<Image>,
     @Json(name = "wiki")
-    val wiki: Wiki
+    val wiki: Wiki?
 ) : Parcelable
