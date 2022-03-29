@@ -163,11 +163,9 @@ fun TrackCard(track: Track, lastFMNavigation: LastFMNavigation) {
 
 @Composable
 fun DisplayImages(url: String) {
-    url?.let {
-        Image(
-            painter = rememberImagePainter(url),
-            contentDescription = null,
-            modifier = Modifier.size(150.dp)
-        )
-    }
+    Image(
+        painter = rememberImagePainter(url),
+        contentDescription = null,
+        modifier = Modifier.size(150.dp)
+    )
 }

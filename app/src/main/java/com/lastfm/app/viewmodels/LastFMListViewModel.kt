@@ -25,6 +25,11 @@ class LastFMListViewModel @Inject constructor(
     private val artistsUseCase: ArtistsUseCase,
     private val tracksUseCase: TracksUseCase
 ) : ViewModel() {
+
+    companion object {
+        private const val DEFAULT_SEARCH_TERM = "Believe"
+    }
+
     private val _albumsListViewState: MutableStateFlow<AlbumsListState> =
         MutableStateFlow(AlbumsListState.Loading)
     val albumsListViewState: StateFlow<AlbumsListState> = _albumsListViewState
@@ -51,10 +56,12 @@ class LastFMListViewModel @Inject constructor(
 
     fun updateSearchTextState(newValue: String) {
         _searchTextState.value = newValue
-        searchText = _searchTextState.value
+        searchText = _searchTextState.value.ifEmpty {
+            DEFAULT_SEARCH_TERM
+        }
     }
 
-    var searchText: String = "believe"
+    var searchText: String = DEFAULT_SEARCH_TERM
         set(searchText) {
             field = searchText
             loadAlbums()

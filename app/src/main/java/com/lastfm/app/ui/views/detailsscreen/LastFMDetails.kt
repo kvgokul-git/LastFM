@@ -98,11 +98,9 @@ fun TrackDetails(trackDetailsResponse: TrackDetailsResponse) {
 
 @Composable
 fun DisplayLargeImage(url: String) {
-    url?.let {
-        Image(
-            painter = rememberImagePainter(url),
-            contentDescription = null,
-            modifier = Modifier.size(250.dp)
-        )
-    }
+    Image(
+        painter = rememberImagePainter(url),
+        contentDescription = null,
+        modifier = Modifier.size(250.dp)
+    )
 }
