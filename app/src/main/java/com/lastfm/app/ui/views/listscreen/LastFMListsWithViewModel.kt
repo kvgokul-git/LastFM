@@ -11,6 +11,8 @@ import com.lastfm.app.ui.views.LastFMNavigation
 import com.lastfm.app.ui.views.reusable_views.LastFMStandardProgressBar
 import com.lastfm.app.viewmodels.LastFMListViewModel
 
+private const val NETWORK_ERROR_MESSAGE = "Something went wrong due to the network"
+
 @Composable
 fun AlbumsListWithViewModel(
     lastFMListViewModel: LastFMListViewModel,
@@ -24,7 +26,7 @@ fun AlbumsListWithViewModel(
             lastFMNavigation = lastFMNavigation
         )
         is AlbumsListState.Loading -> LastFMStandardProgressBar()
-        else -> Text(text = " Hello there is an error")
+        else -> Text(text = NETWORK_ERROR_MESSAGE)
     }
 }
 
@@ -41,7 +43,7 @@ fun ArtistsListWithViewModel(
             lastFMNavigation = lastFMNavigation
         )
         is ArtistsListState.Loading -> LastFMStandardProgressBar()
-        else -> Text(text = " Hello there is an error")
+        else -> Text(text = NETWORK_ERROR_MESSAGE)
     }
 }
 
@@ -58,6 +60,6 @@ fun TracksListWithViewModel(
             lastFMNavigation = lastFMNavigation
         )
         is TracksListState.Loading -> LastFMStandardProgressBar()
-        else -> Text(text = " Hello there is an error")
+        else -> Text(text = NETWORK_ERROR_MESSAGE)
     }
 }
