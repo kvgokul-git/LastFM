@@ -12,7 +12,8 @@ class LastFMNavigation(
     fun navigateToAlbumDetailsScreen(album: Album) {
         navController.navigate(
             Screen.AlbumDetails.withArgs(
-                album.name
+                album.name,
+                album.artist
             )
         )
     }
@@ -28,6 +29,7 @@ class LastFMNavigation(
     fun navigateToTrackDetailsScreen(track: Track) {
         navController.navigate(
             Screen.TrackDetails.withArgs(
+                track.artist,
                 track.name
             )
         )

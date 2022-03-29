@@ -33,7 +33,7 @@ class LastFMListViewModel @Inject constructor(
         MutableStateFlow(TracksListState.Loading)
     val tracksListViewState: StateFlow<TracksListState> = _tracksListViewState
 
-    var searchText: String = "love"
+    var searchText: String = "believe"
         set(searchText) {
             field = searchText
             loadAlbums()

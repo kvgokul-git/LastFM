@@ -22,15 +22,22 @@ import com.lastfm.app.model.AlbumsListState
 import com.lastfm.app.model.ArtistsListState
 import com.lastfm.app.model.TracksListState
 import com.lastfm.app.ui.theme.LastFMTheme
-import com.lastfm.app.ui.views.listscreen.AlbumsGrid
-import com.lastfm.app.ui.views.listscreen.ArtistsGrid
-import com.lastfm.app.ui.views.listscreen.TracksGrid
+import com.lastfm.app.ui.views.listscreen.DisplayAlbums
+import com.lastfm.app.ui.views.listscreen.DisplayArtists
+import com.lastfm.app.ui.views.listscreen.DisplayTracks
 import com.lastfm.app.ui.views.reusable_views.*
 import com.lastfm.app.viewmodels.LastFMListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    companion object {
+        private const val HEADING_ALBUMS = "Albums"
+        private const val HEADING_ARTISTS = "Artists"
+        private const val HEADING_TRACKS = "Tracks"
+    }
+
     private val lastFMListViewModel: LastFMListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,17 +52,28 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable(route = Screen.Listing.route) {
                         DefaultSurface {
-                            Column(modifier = Modifier
-                                .fillMaxSize()
-                                .verticalScroll(rememberScrollState())) {
-                                PageHeader(heading = "Albums")
-                                AlbumsListWithViewModel(lastFMListViewModel = lastFMListViewModel)
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .verticalScroll(rememberScrollState())
+                            ) {
+                                PageHeader(heading = HEADING_ALBUMS)
+                                AlbumsListWithViewModel(
+                                    lastFMListViewModel = lastFMListViewModel,
+                                    lastFMNavigation = lastFMNavigation
+                                )
                                 MediumSpacer()
-                                PageHeader(heading = "Artists")
-                                ArtistsListWithViewModel(lastFMListViewModel = lastFMListViewModel)
+                                PageHeader(heading = HEADING_ARTISTS)
+                                ArtistsListWithViewModel(
+                                    lastFMListViewModel = lastFMListViewModel,
+                                    lastFMNavigation = lastFMNavigation
+                                )
                                 MediumSpacer()
-                                PageHeader(heading = "Tracks")
-                                TracksListWithViewModel(lastFMListViewModel = lastFMListViewModel)
+                                PageHeader(heading = HEADING_TRACKS)
+                                TracksListWithViewModel(
+                                    lastFMListViewModel = lastFMListViewModel,
+                                    lastFMNavigation = lastFMNavigation
+                                )
                             }
                         }
                     }
@@ -76,12 +94,16 @@ fun DefaultSurface(content: @Composable () -> Unit) {
 
 @Composable
 fun AlbumsListWithViewModel(
-    lastFMListViewModel: LastFMListViewModel
+    lastFMListViewModel: LastFMListViewModel,
+    lastFMNavigation: LastFMNavigation
 ) {
     val currentState: State<AlbumsListState> =
         lastFMListViewModel.albumsListViewState.collectAsState()
     when (val result = currentState.value) {
-        is AlbumsListState.Loaded -> AlbumsGrid(albumsResponse = result.albums)
+        is AlbumsListState.Loaded -> DisplayAlbums(
+            albumsResponse = result.albums,
+            lastFMNavigation = lastFMNavigation
+        )
         is AlbumsListState.Loading -> LastFMStandardProgressBar()
         else -> Text(text = " Hello there is an error")
     }
@@ -89,12 +111,16 @@ fun AlbumsListWithViewModel(
 
 @Composable
 fun ArtistsListWithViewModel(
-    lastFMListViewModel: LastFMListViewModel
+    lastFMListViewModel: LastFMListViewModel,
+    lastFMNavigation: LastFMNavigation
 ) {
     val currentState: State<ArtistsListState> =
         lastFMListViewModel.artistsListViewState.collectAsState()
     when (val result = currentState.value) {
-        is ArtistsListState.Loaded -> ArtistsGrid(artistsResponse = result.artists)
+        is ArtistsListState.Loaded -> DisplayArtists(
+            artistsResponse = result.artists,
+            lastFMNavigation = lastFMNavigation
+        )
         is ArtistsListState.Loading -> LastFMStandardProgressBar()
         else -> Text(text = " Hello there is an error")
     }
@@ -102,12 +128,16 @@ fun ArtistsListWithViewModel(
 
 @Composable
 fun TracksListWithViewModel(
-    lastFMListViewModel: LastFMListViewModel
+    lastFMListViewModel: LastFMListViewModel,
+    lastFMNavigation: LastFMNavigation
 ) {
     val currentState: State<TracksListState> =
         lastFMListViewModel.tracksListViewState.collectAsState()
     when (val result = currentState.value) {
-        is TracksListState.Loaded -> TracksGrid(tracksResponse = result.tracks)
+        is TracksListState.Loaded -> DisplayTracks(
+            tracksResponse = result.tracks,
+            lastFMNavigation = lastFMNavigation
+        )
         is TracksListState.Loading -> LastFMStandardProgressBar()
         else -> Text(text = " Hello there is an error")
     }
