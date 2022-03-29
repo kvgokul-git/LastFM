@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import com.lastfm.app.model.SearchWidgetState
 import com.lastfm.app.viewmodels.LastFMListViewModel
 
+private const val DEFAULT_SEARCH_TERM = "Believe"
+
 @Composable
 fun LastFMWidgets(lastFMListViewModel: LastFMListViewModel) {
 
@@ -31,7 +33,10 @@ fun LastFMWidgets(lastFMListViewModel: LastFMListViewModel) {
                 searchWidgetState = searchWidgetState,
                 searchTextState = searchTextState,
                 onTextChange = {
-                    lastFMListViewModel.updateSearchTextState(newValue = it)
+                    when (it.length) {
+                        0 -> lastFMListViewModel.updateSearchTextState(newValue = DEFAULT_SEARCH_TERM)
+                        else -> lastFMListViewModel.updateSearchTextState(newValue = it)
+                    }
                 },
                 onCloseClicked = {
                     lastFMListViewModel.updateSearchWidgetState(newValue = SearchWidgetState.CLOSED)
