@@ -10,7 +10,7 @@ import io.mockk.unmockkAll
 import org.junit.Before
 import org.junit.Rule
 
-abstract class NetworkRepositoryTestBase<T: NetworkApiCallDelegate> {
+abstract class NetworkRepositoryTestBase<T : NetworkApiCallDelegate> {
 
     @Before
     fun tearDown() {
@@ -24,9 +24,9 @@ abstract class NetworkRepositoryTestBase<T: NetworkApiCallDelegate> {
     protected lateinit var mockNetworkApiCallDelegate: NetworkApiCallDelegate
 
     @InjectMockKs
-    protected lateinit var subject : T
+    protected lateinit var subject: T
 
-    protected infix fun <T : Any> ApiCallBlock<T>.returns(responseData: T){
+    protected infix fun <T : Any> ApiCallBlock<T>.returns(responseData: T) {
         coEvery {
             mockApiCall()
         } returns responseData
@@ -35,12 +35,12 @@ abstract class NetworkRepositoryTestBase<T: NetworkApiCallDelegate> {
 
         coEvery {
             mockNetworkApiCallDelegate.executeApiCall(capture(slot))
-        } coAnswers {slot.captured.invoke()}
+        } coAnswers { slot.captured.invoke() }
     }
 
     protected fun <T : Any> everyApiCallExceutionOf(apiCall: suspend () -> T) =
         ApiCallBlock(apiCall)
 
-    protected class ApiCallBlock<T: Any>(val mockApiCall: suspend () -> T)
+    protected class ApiCallBlock<T : Any>(val mockApiCall: suspend () -> T)
 
 }
