@@ -61,7 +61,7 @@ class LastFMListViewModel @Inject constructor(
         }
     }
 
-    var searchText: String = DEFAULT_SEARCH_TERM
+    private var searchText: String = DEFAULT_SEARCH_TERM
         set(searchText) {
             field = searchText
             loadAlbums()
